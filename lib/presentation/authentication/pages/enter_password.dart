@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 
-class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+class EnterPasswordPage extends StatelessWidget {
+  const EnterPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class SigninPage extends StatelessWidget {
           children: [
             _signinText(context),
             SizedBox(height: 20),
-            _emailField(context),
+            _passwordField(context),
             SizedBox(height: 20),
             _continueButton(context),
             SizedBox(height: 20),
-            _createAccount(context),
+            _replacePassword(context),
           ],
         ),
       ),
@@ -41,10 +41,10 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _emailField(BuildContext context) {
+  Widget _passwordField(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: 'Enter email',
+        hintText: 'Enter password',
       ),
     );
   }
@@ -56,13 +56,13 @@ class SigninPage extends StatelessWidget {
     );
   }
 
-  Widget _createAccount(BuildContext context) {
+  Widget _replacePassword(BuildContext context) {
     return RichText(
       text: TextSpan(
         children: [
-          TextSpan(text: 'Dont have and account? '),
+          TextSpan(text: 'Forgot password? '),
           TextSpan(
-            text: 'Create one',
+            text: 'Replace',
             recognizer: TapGestureRecognizer()..onTap = () {},
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
