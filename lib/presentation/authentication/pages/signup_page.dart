@@ -4,10 +4,10 @@ import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/presentation/authentication/pages/forgot_password_page.dart';
+import 'package:topshop/presentation/authentication/pages/enter_password.dart';
 
-class EnterPasswordPage extends StatelessWidget {
-  const EnterPasswordPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,25 +21,55 @@ class EnterPasswordPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _signinText(context),
+            _signupText(context),
+            SizedBox(height: 20),
+            _firstNameField(context),
+            SizedBox(height: 20),
+            _lastNameField(context),
+            SizedBox(height: 20),
+            _emailField(context),
             SizedBox(height: 20),
             _passwordField(context),
             SizedBox(height: 20),
             _continueButton(context),
             SizedBox(height: 20),
-            _replacePassword(context),
+            _signinAccount(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _signinText(BuildContext context) {
+  Widget _signupText(BuildContext context) {
     return Text(
-      'Sign In',
+      'Sign Up',
       style: TextStyle(
         fontSize: 32,
         fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget _firstNameField(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Enter first name',
+      ),
+    );
+  }
+
+  Widget _lastNameField(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Enter last name',
+      ),
+    );
+  }
+
+  Widget _emailField(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: 'Enter email',
       ),
     );
   }
@@ -54,21 +84,23 @@ class EnterPasswordPage extends StatelessWidget {
 
   Widget _continueButton(BuildContext context) {
     return BasicButton(
-      onPressed: () {},
+      onPressed: () {
+        AppNavigator.push(context, const EnterPasswordPage());
+      },
       title: 'Continue',
     );
   }
 
-  Widget _replacePassword(BuildContext context) {
+  Widget _signinAccount(BuildContext context) {
     return RichText(
       text: TextSpan(
         children: [
-          TextSpan(text: 'Forgot password? '),
+          TextSpan(text: 'Already have an account? '),
           TextSpan(
-            text: 'Replace',
+            text: 'Sign In',
             recognizer: TapGestureRecognizer()
               ..onTap = () {
-                AppNavigator.push(context, ForgotPasswordPage());
+                AppNavigator.pushReplacement(context, SignupPage());
               },
             style: TextStyle(fontWeight: FontWeight.bold),
           ),

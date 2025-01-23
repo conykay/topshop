@@ -1,7 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
+import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
+import 'package:topshop/presentation/authentication/pages/enter_password.dart';
+import 'package:topshop/presentation/authentication/pages/signup_page.dart';
 
 class SigninPage extends StatelessWidget {
   const SigninPage({super.key});
@@ -9,11 +13,11 @@ class SigninPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BasicAppBar(hideBack: true),
       backgroundColor: AppColors.background,
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
-          vertical: 80,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +55,9 @@ class SigninPage extends StatelessWidget {
 
   Widget _continueButton(BuildContext context) {
     return BasicButton(
-      onPressed: () {},
+      onPressed: () {
+        AppNavigator.push(context, const EnterPasswordPage());
+      },
       title: 'Continue',
     );
   }
@@ -63,7 +69,10 @@ class SigninPage extends StatelessWidget {
           TextSpan(text: 'Dont have and account? '),
           TextSpan(
             text: 'Create one',
-            recognizer: TapGestureRecognizer()..onTap = () {},
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                AppNavigator.push(context, SignupPage());
+              },
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ],
