@@ -5,6 +5,7 @@ import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/presentation/authentication/pages/forgot_password_page.dart';
+import 'package:topshop/presentation/authentication/pages/gender_and_age_selection.dart';
 
 class EnterPasswordPage extends StatelessWidget {
   const EnterPasswordPage({super.key});
@@ -54,7 +55,9 @@ class EnterPasswordPage extends StatelessWidget {
 
   Widget _continueButton(BuildContext context) {
     return BasicButton(
-      onPressed: () {},
+      onPressed: () {
+        AppNavigator.push(context, GenderAndAgeSelectionPage());
+      },
       title: 'Continue',
     );
   }
