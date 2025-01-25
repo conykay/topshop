@@ -4,11 +4,14 @@ import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
+import 'package:topshop/data/auth/models/user_login_req.dart';
 import 'package:topshop/presentation/authentication/pages/enter_password.dart';
 import 'package:topshop/presentation/authentication/pages/signup_page.dart';
 
 class SigninPage extends StatelessWidget {
-  const SigninPage({super.key});
+  SigninPage({super.key});
+
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,7 @@ class SigninPage extends StatelessWidget {
 
   Widget _emailField(BuildContext context) {
     return TextField(
+      controller: _emailController,
       decoration: InputDecoration(
         hintText: 'Enter email',
       ),
@@ -56,7 +60,11 @@ class SigninPage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BasicButton(
       onPressed: () {
-        AppNavigator.push(context, const EnterPasswordPage());
+        AppNavigator.push(
+            context,
+            EnterPasswordPage(
+              userSignInReq: UserSignInReq(email: _emailController.text),
+            ));
       },
       title: 'Continue',
     );

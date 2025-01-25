@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:topshop/data/auth/models/user_creation_req.dart';
+import 'package:topshop/data/auth/models/user_login_req.dart';
 import 'package:topshop/domain/auth/repository/auth.dart';
 
 import '../../../service_locator.dart';
@@ -14,5 +15,10 @@ class AuthRepositoryImp extends AuthRepositiory {
   @override
   Future<Either> getAges() async {
     return await sl<AuthFirebaseService>().getAges();
+  }
+
+  @override
+  Future<Either> signin(UserSignInReq user) async {
+    return await sl<AuthFirebaseService>().signin(user);
   }
 }

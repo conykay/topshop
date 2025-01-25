@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:topshop/data/auth/models/user_login_req.dart';
 
 import '../models/user_creation_req.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signup(UserCreationReq user);
+  Future<Either> signin(UserSignInReq user);
   Future<Either> getAges();
 }
 
@@ -52,6 +54,28 @@ class AuthFirebaseImp extends AuthFirebaseService {
       return Right(returnedData.docs);
     } catch (e) {
       return Left('please try again');
+    }
+  }
+
+  @override
+  Future<Either> signin(UserSignInReq user) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: user.email!,
+        password: user.password!,
+      );
+
+      return Right('User signed in successfully');
+    } on FirebaseAuthException catch (e) {
+      String message = e.code;
+
+      if (e.code == 'wrong-password') {
+        message = 'Wrong password provided for that user';
+      } else if (e.code == 'user-not-found') {
+        message = 'No user found for that email';
+      }
+
+      return Left(message);
     }
   }
 }
