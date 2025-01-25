@@ -4,7 +4,7 @@ import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/presentation/authentication/pages/enter_password.dart';
+import 'package:topshop/presentation/authentication/pages/gender_and_age_selection.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({super.key});
@@ -85,7 +85,7 @@ class SignupPage extends StatelessWidget {
   Widget _continueButton(BuildContext context) {
     return BasicButton(
       onPressed: () {
-        AppNavigator.push(context, const EnterPasswordPage());
+        AppNavigator.push(context, const GenderAndAgeSelectionPage());
       },
       title: 'Continue',
     );

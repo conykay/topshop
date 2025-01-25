@@ -8,6 +8,11 @@ import '../source/auth_firebase_service.dart';
 class AuthRepositoryImp extends AuthRepositiory {
   @override
   Future<Either> signup(UserCreationReq user) async {
-    return sl<AuthFirebaseService>().signup(user);
+    return await sl<AuthFirebaseService>().signup(user);
+  }
+
+  @override
+  Future<Either> getAges() async {
+    return await sl<AuthFirebaseService>().getAges();
   }
 }

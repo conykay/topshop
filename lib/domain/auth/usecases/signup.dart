@@ -8,6 +8,6 @@ import '../../../service_locator.dart';
 class SignupUseCase extends UseCase<Either, UserCreationReq> {
   @override
   Future<Either> call({UserCreationReq? params}) async {
-    return sl<AuthRepositiory>().signup(params!);
+    return await sl<AuthRepositiory>().signup(params!);
   }
 }

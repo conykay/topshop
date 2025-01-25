@@ -5,6 +5,7 @@ import 'package:topshop/common/bloc/button/button_state_cubit.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_reactive_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
+import 'package:topshop/presentation/authentication/bloc/age_display_cubit.dart';
 import 'package:topshop/presentation/authentication/bloc/age_selection_cubit.dart';
 
 import '../../../common/widgets/bottomsheet/ages_bottomsheet.dart';
@@ -23,6 +24,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
           BlocProvider(create: (context) => GenderSelectionCubit()),
           BlocProvider(create: (context) => ButtonStateCubit()),
           BlocProvider(create: (context) => AgeSelectionCubit()),
+          BlocProvider(create: (context) => AgeDisplayCubit()),
         ],
         child: BlocListener<ButtonStateCubit, ButtonState>(
           listener: (context, state) {},
@@ -117,7 +119,18 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            AppBottomSheet.display(context, Ages());
+            AppBottomSheet.display(
+              context,
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: context.read<AgeSelectionCubit>()),
+                  BlocProvider.value(
+                    value: context.read<AgeDisplayCubit>()..getAges(),
+                  ),
+                ],
+                child: Ages(),
+              ),
+            );
           },
           child: Container(
             height: 60,
@@ -128,7 +141,12 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text('state'), Icon(Icons.keyboard_arrow_down)],
+              children: [
+                Text(
+                  context.read<AgeSelectionCubit>().selectedAge,
+                ),
+                Icon(Icons.keyboard_arrow_down)
+              ],
             ),
           ),
         );

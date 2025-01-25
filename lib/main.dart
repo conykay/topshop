@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/core/configs/theme/app_theme.dart';
 import 'package:topshop/presentation/spash/bloc/splash_cubit.dart';
 import 'package:topshop/presentation/spash/pages/splash.dart';
+import 'package:topshop/service_locator.dart';
 
 import 'firebase_options.dart';
 
@@ -12,6 +13,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await initializeDependecies();
   runApp(const MyApp());
 }
 

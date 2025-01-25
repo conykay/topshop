@@ -6,6 +6,7 @@ import '../models/user_creation_req.dart';
 
 abstract class AuthFirebaseService {
   Future<Either> signup(UserCreationReq user);
+  Future<Either> getAges();
 }
 
 class AuthFirebaseImp extends AuthFirebaseService {
@@ -40,6 +41,17 @@ class AuthFirebaseImp extends AuthFirebaseService {
       }
 
       return Left(error);
+    }
+  }
+
+  @override
+  Future<Either> getAges() async {
+    try {
+      var returnedData =
+          await FirebaseFirestore.instance.collection('Ages').get();
+      return Right(returnedData.docs);
+    } catch (e) {
+      return Left('please try again');
     }
   }
 }
