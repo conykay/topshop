@@ -8,6 +8,8 @@ import '../models/user_creation_req.dart';
 abstract class AuthFirebaseService {
   Future<Either> signup(UserCreationReq user);
   Future<Either> signin(UserSignInReq user);
+  Future<Either> sendPaswordResetEmail(String email);
+
   Future<Either> getAges();
 }
 
@@ -76,6 +78,16 @@ class AuthFirebaseImp extends AuthFirebaseService {
       }
 
       return Left(message);
+    }
+  }
+
+  @override
+  Future<Either> sendPaswordResetEmail(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return Right('Email sent succesfully');
+    } catch (e) {
+      return Left('Somethig went wrong try again');
     }
   }
 }
