@@ -26,4 +26,9 @@ class AuthRepositoryImp extends AuthRepositiory {
   Future<Either> sendPaswordResetEmail(String email) async {
     return await sl<AuthFirebaseService>().sendPaswordResetEmail(email);
   }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    return await sl<AuthFirebaseService>().isLoggedIn();
+  }
 }

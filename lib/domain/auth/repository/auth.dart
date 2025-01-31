@@ -6,5 +6,6 @@ abstract class AuthRepositiory {
   Future<Either> signup(UserCreationReq user);
   Future<Either> signin(UserSignInReq user);
   Future<Either> sendPaswordResetEmail(String email);
+  Future<bool> isLoggedIn();
   Future<Either> getAges();
 }

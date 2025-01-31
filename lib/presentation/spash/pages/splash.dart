@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:topshop/presentation/authentication/pages/signin.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
+import 'package:topshop/presentation/authentication/pages/signup_page.dart';
+import 'package:topshop/presentation/home/pages/home.dart';
 import 'package:topshop/presentation/spash/bloc/splash_cubit.dart';
 import 'package:topshop/presentation/spash/bloc/splash_state.dart';
 
@@ -14,12 +16,10 @@ class SplashPage extends StatelessWidget {
     return BlocListener<SplashCubit, SplashState>(
       listener: (context, state) {
         if (state is UnAuthenticated) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SigninPage(),
-            ),
-          );
+          AppNavigator.pushReplacement(context, SignupPage());
+        }
+        if (state is Authenticated) {
+          AppNavigator.pushReplacement(context, HomePage());
         }
       },
       child: const Scaffold(

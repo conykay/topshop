@@ -10,6 +10,7 @@ import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/data/auth/models/user_login_req.dart';
 import 'package:topshop/domain/auth/usecases/signin.dart';
 import 'package:topshop/presentation/authentication/pages/forgot_password_page.dart';
+import 'package:topshop/presentation/home/pages/home.dart';
 
 class EnterPasswordPage extends StatelessWidget {
   UserSignInReq userSignInReq;
@@ -35,7 +36,7 @@ class EnterPasswordPage extends StatelessWidget {
             }
 
             if (state is ButtonSuccessSate) {
-              //todo: implement redirect to homepage
+              AppNavigator.pushAndRemove(context, HomePage());
             }
           },
           child: Padding(

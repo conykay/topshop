@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:topshop/presentation/home/pages/home.dart';
 
 class AppNavigator {
   static void pushReplacement(BuildContext context, Widget page) {
@@ -16,6 +17,14 @@ class AppNavigator {
       MaterialPageRoute(
         builder: (context) => page,
       ),
+    );
+  }
+
+  static void pushAndRemove(BuildContext context, Widget page) {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+      (Route<dynamic> route) => false,
     );
   }
 }

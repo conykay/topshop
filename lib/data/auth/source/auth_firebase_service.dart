@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:topshop/data/auth/models/user_login_req.dart';
 
 import '../models/user_creation_req.dart';
@@ -9,6 +10,7 @@ abstract class AuthFirebaseService {
   Future<Either> signup(UserCreationReq user);
   Future<Either> signin(UserSignInReq user);
   Future<Either> sendPaswordResetEmail(String email);
+  Future<bool> isLoggedIn();
 
   Future<Either> getAges();
 }
@@ -88,6 +90,15 @@ class AuthFirebaseImp extends AuthFirebaseService {
       return Right('Email sent succesfully');
     } catch (e) {
       return Left('Somethig went wrong try again');
+    }
+  }
+
+  @override
+  Future<bool> isLoggedIn() async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

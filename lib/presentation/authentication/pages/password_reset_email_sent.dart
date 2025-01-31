@@ -12,19 +12,17 @@ class PasswordResetEmailSent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _emailSentIcon(),
-              SizedBox(height: 20.0),
-              _emailSendMessage(),
-              SizedBox(height: 20.0),
-              _returnToSignin(context),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _emailSentIcon(),
+            SizedBox(height: 20.0),
+            _emailSendMessage(),
+            SizedBox(height: 20.0),
+            _returnToSignin(context),
+          ],
         ),
       ),
     );
