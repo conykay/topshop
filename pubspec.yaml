@@ -51,6 +51,8 @@ flutter:
 
   assets:
     - assets/fonts/
+    - assets/images/
+    - assets/vectors/
 
   # fonts:
   #   - family: RobotoCondensed
