@@ -13,7 +13,7 @@ import 'package:topshop/presentation/authentication/pages/forgot_password_page.d
 import 'package:topshop/presentation/home/pages/home.dart';
 
 class EnterPasswordPage extends StatelessWidget {
-  UserSignInReq userSignInReq;
+  final UserSignInReq userSignInReq;
   EnterPasswordPage({super.key, required this.userSignInReq});
 
   final TextEditingController _passwordController = TextEditingController();

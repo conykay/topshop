@@ -15,8 +15,8 @@ import '../bloc/gender_selection_cubit.dart';
 import '../widgets/ages.dart';
 
 class GenderAndAgeSelectionPage extends StatelessWidget {
-  UserCreationReq userCreationReq;
-  GenderAndAgeSelectionPage({super.key, required this.userCreationReq});
+  final UserCreationReq userCreationReq;
+  const GenderAndAgeSelectionPage({super.key, required this.userCreationReq});
 
   @override
   Widget build(BuildContext context) {
