@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:topshop/presentation/home/widgets/categories.dart';
 import 'package:topshop/presentation/home/widgets/header.dart';
 import 'package:topshop/presentation/home/widgets/search_field.dart';
+import 'package:topshop/presentation/home/widgets/top_selling.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,6 +18,8 @@ class HomePage extends StatelessWidget {
             SearchField(),
             SizedBox(height: 24.0),
             Categories(),
+            SizedBox(height: 24.0),
+            TopSelling(),
           ],
         ),
       ),
