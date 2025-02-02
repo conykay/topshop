@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:topshop/domain/products/entity/product_entity.dart';
 
 import 'product_color_model.dart';
 
@@ -72,4 +73,19 @@ class ProductModel {
 
   factory ProductModel.fromJson(String source) =>
       ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+extension ProductModelXEntity on ProductModel {
+  ProductEntity toEntity() => ProductEntity(
+      categoryId: categoryId,
+      colors: colors.map((e) => e.toEntity()).toList(),
+      createdDate: createdDate,
+      discountedPrice: discountedPrice,
+      gender: gender,
+      images: images,
+      price: price,
+      sizes: sizes,
+      productId: productId,
+      salesNumber: salesNumber,
+      title: title);
 }

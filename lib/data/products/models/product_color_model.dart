@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:topshop/domain/products/entity/product_color_entity.dart';
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 class ProductColorModel {
@@ -28,4 +30,11 @@ class ProductColorModel {
 
   factory ProductColorModel.fromJson(String source) =>
       ProductColorModel.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+extension ProductColorXEntity on ProductColorModel {
+  ProductColorEntity toEntity() => ProductColorEntity(
+        title: title,
+        hex: hex,
+      );
 }
