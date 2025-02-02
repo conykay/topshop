@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
+import 'package:topshop/core/constants/app_urls.dart';
+import 'package:topshop/domain/products/entity/product_entity.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  final ProductEntity product;
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,11 @@ class ProductCard extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          AppUrl.productImage + product.images[1] + AppUrl.alt),
+                      fit: BoxFit.cover,
+                    ),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
@@ -37,7 +45,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Product Name',
+                      product.title,
                       style: TextStyle(
                         fontSize: 12,
                         overflow: TextOverflow.ellipsis,
@@ -47,7 +55,9 @@ class ProductCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '\$200',
+                          product.discountedPrice == 0
+                              ? '\$${product.price}'
+                              : '\$${product.discountedPrice}',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w300,
@@ -55,7 +65,9 @@ class ProductCard extends StatelessWidget {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          '\$20',
+                          product.discountedPrice == 0
+                              ? ''
+                              : '\$${product.price}',
                           style: TextStyle(
                             fontSize: 12,
                             color: Colors.grey,

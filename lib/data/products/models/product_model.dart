@@ -52,17 +52,19 @@ class ProductModel {
     return ProductModel(
       categoryId: map['categoryId'] as String,
       colors: List<ProductColorModel>.from(
-        (map['colors'] as List<int>).map<ProductColorModel>(
-          (x) => ProductColorModel.fromMap(x as Map<String, dynamic>),
-        ),
+        (map['colors'].map(
+          (x) => ProductColorModel.fromMap(x),
+        )),
       ),
-      createdDate: map['createdDate'] as Timestamp,
+      createdDate: Timestamp.fromDate(DateTime.parse(map['createdDate'])),
       discountedPrice: map['discountedPrice'] as num,
       gender: map['gender'] as int,
-      images: List<String>.from(
-          map['images'].map((e) => e.toString()) as List<String>),
+      images:
+          List<String>.from(map['images'].map((e) => e.toString())).toList(),
       price: map['price'] as num,
-      sizes: List<String>.from((map['sizes'] as List<String>)),
+      sizes: List<String>.from(
+        (map['sizes'].map((e) => e.toString())),
+      ),
       productId: map['productId'] as String,
       salesNumber: map['salesNumber'] as int,
       title: map['title'] as String,
