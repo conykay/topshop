@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/bloc/categories/categories_display_cubit.dart';
 import 'package:topshop/common/bloc/categories/categories_display_state.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
-import 'package:topshop/core/constants/app_urls.dart';
 import 'package:topshop/domain/category/entity/category.dart';
 
 class Categories extends StatelessWidget {
