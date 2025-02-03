@@ -59,7 +59,6 @@ class _NewInDisplay extends StatelessWidget {
         itemCount: products.length,
       ),
     );
-    ;
   }
 }
 
