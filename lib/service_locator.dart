@@ -17,6 +17,7 @@ import 'package:topshop/domain/category/usecases/get_categories.dart';
 import 'package:topshop/domain/products/repository/products.dart';
 import 'package:topshop/domain/products/usecases/get_by_category.dart';
 import 'package:topshop/domain/products/usecases/get_new_in.dart';
+import 'package:topshop/domain/products/usecases/get_search_product.dart';
 import 'package:topshop/domain/products/usecases/get_top_selling.dart';
 
 final sl = GetIt.instance;
@@ -49,4 +50,5 @@ Future<void> initializeDependecies() async {
   sl.registerSingleton<GetNewInUsecase>(GetNewInUsecase());
   sl.registerSingleton<GetProductsByCategoryUseCase>(
       GetProductsByCategoryUseCase());
+  sl.registerSingleton<GetSearchProductUseCase>(GetSearchProductUseCase());
 }

@@ -51,4 +51,20 @@ class ProductsRepositoryImp extends ProductsRepository {
       ),
     );
   }
+
+  @override
+  Future<Either> getSearchedProduct({required String title}) async {
+    var searchedProducts =
+        await sl<ProductsFirebaseService>().getSearchedProduct(title: title);
+    return searchedProducts.fold(
+      (error) => Left(error),
+      (data) => Right(
+        List.from(data)
+            .map(
+              (e) => ProductModel.fromMap(e).toEntity(),
+            )
+            .toList(),
+      ),
+    );
+  }
 }

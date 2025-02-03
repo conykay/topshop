@@ -2,6 +2,8 @@ import 'package:topshop/domain/products/entity/product_entity.dart';
 
 abstract class ProductsDisplayState {}
 
+class InitialProductState extends ProductsDisplayState {}
+
 class LoadingProducts extends ProductsDisplayState {}
 
 class LoadedProducts extends ProductsDisplayState {

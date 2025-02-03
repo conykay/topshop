@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:topshop/common/helper/nav/app_navigation.dart';
-import 'package:topshop/presentation/search/pages/search_product.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:topshop/common/bloc/products/product_display_cubit.dart';
 
-class SearchField extends StatelessWidget {
-  const SearchField({super.key});
+class ProductsSearch extends StatelessWidget {
+  const ProductsSearch({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: TextField(
-        readOnly: true,
-        onTap: () {
-          AppNavigator.push(context, SearchProductsPage());
+        onChanged: (value) {
+          value.isEmpty
+              ? context.read<ProductDisplayCubit>().intitalState()
+              : context.read<ProductDisplayCubit>().getProducts(params: value);
         },
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(12.0),

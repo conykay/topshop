@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/widgets/product/product_card.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
-import 'package:topshop/common/bloc/products/product_top_selling_cubit.dart';
-import 'package:topshop/common/bloc/products/product_top_selling_state.dart';
+import 'package:topshop/common/bloc/products/product_display_cubit.dart';
+import 'package:topshop/common/bloc/products/product_display_state.dart';
 import 'package:topshop/domain/products/usecases/get_top_selling.dart';
 
 import '../../../service_locator.dart';

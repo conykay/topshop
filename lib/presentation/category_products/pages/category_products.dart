@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:topshop/common/bloc/products/product_top_selling_cubit.dart';
-import 'package:topshop/common/bloc/products/product_top_selling_state.dart';
+import 'package:topshop/common/bloc/products/product_display_cubit.dart';
+import 'package:topshop/common/bloc/products/product_display_state.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/product/product_card.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
