@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 abstract class ProductsFirebaseService {
   Future<Either> getTopSellingProducts();
   Future<Either> getNewInProducts();
+  Future<Either> getCategoryProducts({required String categoryId});
 }
 
 class ProductsFirebaseServiceImp extends ProductsFirebaseService {
@@ -30,6 +31,21 @@ class ProductsFirebaseServiceImp extends ProductsFirebaseService {
           .where('createdDate',
               isGreaterThanOrEqualTo:
                   Timestamp.fromDate(DateTime.parse('2025-01-16')))
+          .get();
+      return Right(
+        returnedData.docs.map((e) => e.data()).toList(),
+      );
+    } catch (e) {
+      return Left('Please try again');
+    }
+  }
+
+  @override
+  Future<Either> getCategoryProducts({required String categoryId}) async {
+    try {
+      var returnedData = await FirebaseFirestore.instance
+          .collection('Products')
+          .where('categoryId', isEqualTo: categoryId)
           .get();
       return Right(
         returnedData.docs.map((e) => e.data()).toList(),

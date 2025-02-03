@@ -35,4 +35,20 @@ class ProductsRepositoryImp extends ProductsRepository {
       ),
     );
   }
+
+  @override
+  Future<Either> getCategoryProducts({required String categoryId}) async {
+    var categoryProducts = await sl<ProductsFirebaseService>()
+        .getCategoryProducts(categoryId: categoryId);
+    return categoryProducts.fold(
+      (error) => Left(error),
+      (data) => Right(
+        List.from(data)
+            .map(
+              (e) => ProductModel.fromMap(e).toEntity(),
+            )
+            .toList(),
+      ),
+    );
+  }
 }

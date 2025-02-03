@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/bloc/categories/categories_display_cubit.dart';
 import 'package:topshop/common/bloc/categories/categories_display_state.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/core/constants/app_urls.dart';
+import 'package:topshop/presentation/category_products/pages/category_products.dart';
 
 class AllCategoriesPage extends StatelessWidget {
   const AllCategoriesPage({super.key});
@@ -45,15 +47,18 @@ class _CategoriesListDisplay extends StatelessWidget {
         return Center(child: CircularProgressIndicator());
       }
       if (state is CategoriesLoaded) {
-        var category = state.categories;
-        return GestureDetector(
-          onTap: () {},
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
-              return Card(
+        var categories = state.categories;
+        return ListView.separated(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                AppNavigator.push(
+                    context, CategoryProductsPage(category: categories[index]));
+              },
+              child: Card(
                 color: AppColors.secondBackground,
                 child: Row(
                   children: [
@@ -69,7 +74,7 @@ class _CategoriesListDisplay extends StatelessWidget {
                         image: DecorationImage(
                           image: NetworkImage(
                             AppUrl.categoryImage +
-                                category[index].image +
+                                categories[index].image +
                                 AppUrl.alt,
                           ),
                         ),
@@ -77,18 +82,18 @@ class _CategoriesListDisplay extends StatelessWidget {
                     ),
                     SizedBox(width: 20),
                     Text(
-                      category[index].title,
+                      categories[index].title,
                       style: TextStyle(
                         fontSize: 22,
                       ),
                     )
                   ],
                 ),
-              );
-            },
-            separatorBuilder: (context, index) => SizedBox(height: 5),
-            itemCount: category.length,
-          ),
+              ),
+            );
+          },
+          separatorBuilder: (context, index) => SizedBox(height: 5),
+          itemCount: categories.length,
         );
       }
       return Container();
