@@ -6,9 +6,25 @@ import 'package:topshop/service_locator.dart';
 
 class ProductsRepositoryImp extends ProductsRepository {
   @override
-  Future<Either> getTopSelling() async {
-    var productsData = await sl<ProductsFirebaseService>().getTopSelling();
+  Future<Either> getTopSellingProducts() async {
+    var productsData =
+        await sl<ProductsFirebaseService>().getTopSellingProducts();
     return productsData.fold(
+      (error) => Left(error),
+      (data) => Right(
+        List.from(data)
+            .map(
+              (e) => ProductModel.fromMap(e).toEntity(),
+            )
+            .toList(),
+      ),
+    );
+  }
+
+  @override
+  Future<Either> getNewInProducts() async {
+    var newInProducts = await sl<ProductsFirebaseService>().getNewInProducts();
+    return newInProducts.fold(
       (error) => Left(error),
       (data) => Right(
         List.from(data)

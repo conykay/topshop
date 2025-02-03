@@ -56,7 +56,7 @@ class ProductModel {
           (x) => ProductColorModel.fromMap(x),
         )),
       ),
-      createdDate: Timestamp.fromDate(DateTime.parse(map['createdDate'])),
+      createdDate: map['createdDate'] as Timestamp,
       discountedPrice: map['discountedPrice'] as num,
       gender: map['gender'] as int,
       images:

@@ -6,6 +6,6 @@ import 'package:topshop/service_locator.dart';
 class GetProductTopSellingUseCase extends UseCase<Either, dynamic> {
   @override
   Future<Either> call({params}) async {
-    return await sl<ProductsRepository>().getTopSelling();
+    return await sl<ProductsRepository>().getTopSellingProducts();
   }
 }
