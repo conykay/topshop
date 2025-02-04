@@ -17,7 +17,7 @@ class ProductQuantity extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
         color: AppColors.secondBackground,
-        borderRadius: BorderRadius.circular(100),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,15 +36,15 @@ class ProductQuantity extends StatelessWidget {
                   context.read<ProductQuantityCubit>().decrement();
                 },
                 icon: Container(
-                  height: 35,
-                  width: 35,
+                  height: 30,
+                  width: 30,
                   decoration: BoxDecoration(
                     color: AppColors.primary,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     Icons.remove,
-                    size: 30,
+                    size: 20,
                   ),
                 ),
               ),
@@ -54,7 +54,7 @@ class ProductQuantity extends StatelessWidget {
                   state.toString(),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 22,
                   ),
                 );
               }),
@@ -64,15 +64,15 @@ class ProductQuantity extends StatelessWidget {
                   context.read<ProductQuantityCubit>().increment();
                 },
                 icon: Container(
-                  height: 35,
-                  width: 35,
+                  height: 30,
+                  width: 30,
                   decoration: BoxDecoration(
                     color: AppColors.primary,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
                     Icons.add,
-                    size: 30,
+                    size: 20,
                   ),
                 ),
               )
