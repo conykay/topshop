@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/core/constants/app_urls.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
 
 class ProductCard extends StatelessWidget {
@@ -28,7 +28,9 @@ class ProductCard extends StatelessWidget {
                     color: Colors.white,
                     image: DecorationImage(
                       image: NetworkImage(
-                          AppUrl.productImage + product.images[1] + AppUrl.alt),
+                        ImageDisplayHelper.displayProductImage(
+                            product.images[0]),
+                      ),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
