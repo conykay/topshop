@@ -17,6 +17,7 @@ class ProductImages extends StatelessWidget {
           width: 225,
           decoration: BoxDecoration(
             color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
               fit: BoxFit.cover,
               image: NetworkImage(

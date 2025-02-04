@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:topshop/common/bloc/products/product_display_cubit.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
 import 'package:topshop/presentation/product_detail/bloc/product_quantity_cubit.dart';
 
