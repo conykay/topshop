@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
+import 'package:topshop/common/helper/product/product_price_helper.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/presentation/product_detail/pages/product_details.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
@@ -10,7 +13,9 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        AppNavigator.push(context, ProductDetailPage(product: product));
+      },
       child: Container(
         width: 180,
         decoration: BoxDecoration(
@@ -57,9 +62,8 @@ class ProductCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          product.discountedPrice == 0
-                              ? '\$${product.price}'
-                              : '\$${product.discountedPrice}',
+                          ProductPriceHelper.productPrice(product: product)
+                              .toString(),
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w300,
