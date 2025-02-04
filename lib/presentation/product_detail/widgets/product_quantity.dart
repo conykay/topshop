@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:topshop/common/bloc/products/product_display_cubit.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/presentation/product_detail/bloc/product_quantity_cubit.dart';
 
 import '../../../core/configs/theme/app_colors.dart';
 
@@ -31,7 +33,9 @@ class ProductQuantity extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<ProductQuantityCubit>().decrement();
+                },
                 icon: Container(
                   height: 35,
                   width: 35,
@@ -46,16 +50,20 @@ class ProductQuantity extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 10),
-              Text(
-                '2',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
+              BlocBuilder<ProductQuantityCubit, int>(builder: (context, state) {
+                return Text(
+                  state.toString(),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                );
+              }),
               SizedBox(width: 10),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<ProductQuantityCubit>().increment();
+                },
                 icon: Container(
                   height: 35,
                   width: 35,

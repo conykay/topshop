@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/bloc/button/button_state_cubit.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/presentation/product_detail/bloc/product_quantity_cubit.dart';
 import 'package:topshop/presentation/product_detail/widgets/add_to_cart_button.dart';
 import 'package:topshop/presentation/product_detail/widgets/product_Images.dart';
 import 'package:topshop/presentation/product_detail/widgets/product_price.dart';
@@ -20,6 +21,7 @@ class ProductDetailPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ButtonStateCubit()),
+        BlocProvider(create: (context) => ProductQuantityCubit()),
       ],
       child: Scaffold(
         appBar: BasicAppBar(),
