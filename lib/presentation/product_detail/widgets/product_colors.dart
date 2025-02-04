@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:topshop/core/configs/theme/app_colors.dart';
+import 'package:topshop/common/helper/product/product_color_helper.dart';
 import 'package:topshop/domain/products/entity/product_entity.dart';
-import 'package:topshop/presentation/product_detail/bloc/product_size_select_cubit_bloc.dart';
+import 'package:topshop/presentation/product_detail/bloc/product_color_select_cubit.dart';
 
-class ProductSizes extends StatelessWidget {
+import '../../../core/configs/theme/app_colors.dart';
+
+class ProductColors extends StatelessWidget {
   final ProductEntity product;
-  const ProductSizes({super.key, required this.product});
+  const ProductColors({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ProductSizes extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    'Size',
+                    'Colors',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -53,8 +55,8 @@ class ProductSizes extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     context
-                        .read<ProductSizeSelectCubit>()
-                        .selectSize(index: index);
+                        .read<ProductColorSelectCubit>()
+                        .selectColor(index: index);
                     Navigator.pop(context);
                   },
                   child: Container(
@@ -62,7 +64,7 @@ class ProductSizes extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 24),
                     decoration: BoxDecoration(
                       color: context
-                                  .watch<ProductSizeSelectCubit>()
+                                  .watch<ProductColorSelectCubit>()
                                   .selectedIndex !=
                               index
                           ? AppColors.secondBackground
@@ -73,26 +75,49 @@ class ProductSizes extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          product.sizes[index],
+                          product.colors[index].title,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
                           ),
                         ),
-                        context.watch<ProductSizeSelectCubit>().selectedIndex !=
-                                index
-                            ? Container()
-                            : Icon(
-                                Icons.check,
-                                size: 30,
+                        Row(
+                          children: [
+                            Container(
+                              height: 32,
+                              width: 32,
+                              decoration: BoxDecoration(
+                                color: ProductColorHelper.color(
+                                    hex: product.colors[index].hex),
+                                borderRadius: BorderRadius.circular(100),
+                                border: Border.all(
+                                  color: Colors.white,
+                                  style: BorderStyle.solid,
+                                  width: 2,
+                                ),
                               ),
+                            ),
+                            SizedBox(width: 10),
+                            context
+                                        .watch<ProductColorSelectCubit>()
+                                        .selectedIndex ==
+                                    index
+                                ? Icon(
+                                    Icons.check,
+                                    size: 30,
+                                  )
+                                : SizedBox(
+                                    width: 30,
+                                  ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
                 );
               },
               separatorBuilder: (context, index) => SizedBox(height: 15),
-              itemCount: product.sizes.length,
+              itemCount: product.colors.length,
             ),
           ),
         ],
