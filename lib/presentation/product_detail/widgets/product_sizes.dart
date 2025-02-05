@@ -50,46 +50,45 @@ class ProductSizes extends StatelessWidget {
             child: ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    context
-                        .read<ProductSizeSelectCubit>()
-                        .selectSize(index: index);
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    height: 60,
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    decoration: BoxDecoration(
-                      color: context
-                                  .watch<ProductSizeSelectCubit>()
-                                  .selectedIndex !=
-                              index
-                          ? AppColors.secondBackground
-                          : AppColors.primary,
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          product.sizes[index],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 22,
+                return BlocBuilder<ProductSizeSelectCubit, int>(
+                    builder: (context, state) {
+                  return GestureDetector(
+                    onTap: () {
+                      context
+                          .read<ProductSizeSelectCubit>()
+                          .selectSize(index: index);
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 60,
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      decoration: BoxDecoration(
+                        color: state != index
+                            ? AppColors.secondBackground
+                            : AppColors.primary,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            product.sizes[index],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22,
+                            ),
                           ),
-                        ),
-                        context.watch<ProductSizeSelectCubit>().selectedIndex !=
-                                index
-                            ? Container()
-                            : Icon(
-                                Icons.check,
-                                size: 30,
-                              ),
-                      ],
+                          state != index
+                              ? Container()
+                              : Icon(
+                                  Icons.check,
+                                  size: 30,
+                                ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
+                  );
+                });
               },
               separatorBuilder: (context, index) => SizedBox(height: 15),
               itemCount: product.sizes.length,
