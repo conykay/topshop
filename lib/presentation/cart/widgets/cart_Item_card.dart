@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:topshop/common/helper/images/image_display.dart';
+import 'package:topshop/common/helper/product/product_color_helper.dart';
+import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
 
 import '../../../core/configs/theme/app_colors.dart';
 
 class CartItemCard extends StatelessWidget {
+  final CartItemEntity item;
   const CartItemCard({
     super.key,
+    required this.item,
   });
 
   @override
@@ -21,7 +26,14 @@ class CartItemCard extends StatelessWidget {
             flex: 2,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                      ImageDisplayHelper.displayProductImage(item.productImage),
+                    )),
+              ),
             ),
           ),
           Expanded(
@@ -39,20 +51,21 @@ class CartItemCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Item title',
+                        item.productTitle,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.cancel,
-                          color: Colors.redAccent,
+                      Text(
+                        '\$ ${item.totalPrice}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: AppColors.primary,
                         ),
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(height: 5),
@@ -62,7 +75,7 @@ class CartItemCard extends StatelessWidget {
                       Text.rich(
                         TextSpan(text: 'Size: ', children: [
                           TextSpan(
-                              text: 'XL',
+                              text: item.productSize,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16))
                         ]),
@@ -79,7 +92,9 @@ class CartItemCard extends StatelessWidget {
                             height: 22,
                             width: 22,
                             decoration: BoxDecoration(
-                              color: Colors.blueAccent,
+                              color: ProductColorHelper.color(
+                                hex: item.productColor.hex,
+                              ),
                               border: Border.all(color: Colors.white),
                               borderRadius: BorderRadius.circular(100),
                             ),
@@ -96,7 +111,7 @@ class CartItemCard extends StatelessWidget {
                       Text.rich(
                         TextSpan(text: 'Price: ', children: [
                           TextSpan(
-                              text: '\$23.45',
+                              text: '\$${item.productPrice}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -107,7 +122,7 @@ class CartItemCard extends StatelessWidget {
                       Text.rich(
                         TextSpan(text: 'Ammount: ', children: [
                           TextSpan(
-                              text: '10',
+                              text: item.productQuantity.toString(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -123,15 +138,16 @@ class CartItemCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '2025-12-16 10:15',
+                          item.createdDate.toDate().toString(),
                           style: TextStyle(fontSize: 10),
                         ),
-                        Text('\$ 999.23',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: AppColors.primary,
-                            )),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.cancel_outlined,
+                            color: Colors.redAccent,
+                          ),
+                        )
                       ])
                 ],
               ),

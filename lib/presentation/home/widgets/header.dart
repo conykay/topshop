@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/core/configs/assets/app_images.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/domain/auth/entities/user.dart';
+import 'package:topshop/presentation/cart/pages/cart_page.dart';
 import 'package:topshop/presentation/home/bloc/user_info_cubit.dart';
 import 'package:topshop/presentation/home/bloc/user_info_state.dart';
 
@@ -75,14 +77,19 @@ class Header extends StatelessWidget {
   }
 
   Widget _cart(BuildContext context) {
-    return Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        shape: BoxShape.circle,
+    return GestureDetector(
+      onTap: () {
+        AppNavigator.push(context, CartPage());
+      },
+      child: Container(
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          shape: BoxShape.circle,
+        ),
+        child: Icon(Icons.shopping_cart),
       ),
-      child: Icon(Icons.shopping_cart),
     );
   }
 }
