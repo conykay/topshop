@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/bloc/products/product_display_cubit.dart';
 import 'package:topshop/common/bloc/products/product_display_state.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/domain/products/entities/product_entity.dart';
 import 'package:topshop/domain/products/usecases/get_new_in.dart';
 import 'package:topshop/service_locator.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:topshop/domain/products/entity/product_color_entity.dart';
+import 'package:topshop/domain/products/entities/product_color_entity.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
@@ -38,3 +38,5 @@ extension ProductColorXEntity on ProductColorModel {
         hex: hex,
       );
 }
+
+

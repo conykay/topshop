@@ -5,8 +5,8 @@ import 'package:topshop/common/bloc/products/product_display_state.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/product/product_card.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/domain/category/entity/category.dart';
-import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/domain/category/entities/category.dart';
+import 'package:topshop/domain/products/entities/product_entity.dart';
 import 'package:topshop/domain/products/usecases/get_by_category.dart';
 
 import '../../../service_locator.dart';

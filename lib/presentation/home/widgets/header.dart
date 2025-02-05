@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/core/configs/assets/app_images.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/domain/auth/entity/user.dart';
+import 'package:topshop/domain/auth/entities/user.dart';
 import 'package:topshop/presentation/home/bloc/user_info_cubit.dart';
 import 'package:topshop/presentation/home/bloc/user_info_state.dart';
 

@@ -9,7 +9,7 @@ import 'package:topshop/presentation/search/widgets/search.dart';
 import 'package:topshop/service_locator.dart';
 
 import '../../../common/widgets/product/product_card.dart';
-import '../../../domain/products/entity/product_entity.dart';
+import '../../../domain/products/entities/product_entity.dart';
 
 class SearchProductsPage extends StatelessWidget {
   const SearchProductsPage({super.key});

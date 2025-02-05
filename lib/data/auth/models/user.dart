@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:topshop/domain/auth/entity/user.dart';
+import 'package:topshop/domain/auth/entities/user.dart';
 
 class UserModel {
   final String userId;

@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/domain/products/entities/product_entity.dart';
 
 import 'product_color_model.dart';
 

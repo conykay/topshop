@@ -3,7 +3,7 @@ import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/helper/product/product_price_helper.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/domain/products/entity/product_entity.dart';
+import 'package:topshop/domain/products/entities/product_entity.dart';
 import 'package:topshop/presentation/product_detail/pages/product_details.dart';
 
 class ProductCard extends StatelessWidget {

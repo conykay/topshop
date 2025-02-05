@@ -1,4 +1,4 @@
-import 'package:topshop/domain/auth/entity/user.dart';
+import '../../../domain/auth/entities/user.dart';
 
 abstract class UserInfoState {}
 

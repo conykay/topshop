@@ -1,4 +1,4 @@
-import 'package:topshop/domain/category/entity/category.dart';
+import 'package:topshop/domain/category/entities/category.dart';
 
 abstract class CategoryDisplayState {}
 

@@ -4,7 +4,7 @@ import 'package:topshop/common/bloc/categories/categories_display_cubit.dart';
 import 'package:topshop/common/bloc/categories/categories_display_state.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/common/helper/nav/app_navigation.dart';
-import 'package:topshop/domain/category/entity/category.dart';
+import 'package:topshop/domain/category/entities/category.dart';
 import 'package:topshop/presentation/all_categories/pages/categories_display_page.dart';
 
 class Categories extends StatelessWidget {

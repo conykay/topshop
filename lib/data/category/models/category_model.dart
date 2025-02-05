@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:topshop/domain/category/entity/category.dart';
+import 'package:topshop/domain/category/entities/category.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class CategoryModel {
