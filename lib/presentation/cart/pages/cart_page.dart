@@ -7,7 +7,7 @@ import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
 import 'package:topshop/presentation/all_categories/pages/categories_display_page.dart';
 import 'package:topshop/presentation/cart/bloc/cart_items_state.dart';
 import 'package:topshop/presentation/cart/bloc/cart_items_state_cubit.dart';
-import 'package:topshop/presentation/home/widgets/categories.dart';
+import 'package:topshop/presentation/cart/widgets/check_out.dart';
 
 import '../widgets/cart_Item_card.dart';
 
@@ -31,7 +31,15 @@ class CartPage extends StatelessWidget {
             }
             if (state is LoadedCartItems) {
               return state.items.isNotEmpty
-                  ? _ItemsListWidget(items: state.items)
+                  ? Stack(
+                      children: [
+                        _ItemsListWidget(items: state.items),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: CheckOut(items: state.items),
+                        )
+                      ],
+                    )
                   : _NoItemsWidget();
             }
             return Container();
@@ -83,11 +91,15 @@ class _ItemsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemBuilder: (context, index) => CartItemCard(item: items[index]),
-      separatorBuilder: (context, index) => SizedBox(height: 10),
-      itemCount: items.length,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.575,
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (context, index) => CartItemCard(item: items[index]),
+        separatorBuilder: (context, index) => SizedBox(height: 10),
+        itemCount: items.length,
+      ),
     );
   }
 }
