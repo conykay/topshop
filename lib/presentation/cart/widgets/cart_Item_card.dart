@@ -83,8 +83,14 @@ class CartItemCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            'Color:',
+                          Text.rich(
+                            TextSpan(text: 'Color: ', children: [
+                              TextSpan(
+                                  text: item.productColor.title,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16))
+                            ]),
                             style: TextStyle(fontSize: 14),
                           ),
                           SizedBox(width: 5),
