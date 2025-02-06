@@ -5,6 +5,7 @@ import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
 import '../../products/models/product_color_model.dart';
 
 class CartItemModel {
+  final String cartItemId;
   final String productId;
   final String productTitle;
   final int productQuantity;
@@ -14,7 +15,9 @@ class CartItemModel {
   final double totalPrice;
   final String productImage;
   final Timestamp createdDate;
+
   CartItemModel({
+    required this.cartItemId,
     required this.productId,
     required this.productTitle,
     required this.productQuantity,
@@ -28,6 +31,7 @@ class CartItemModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
+      'cartItemId': cartItemId,
       'productId': productId,
       'productTitle': productTitle,
       'productQuantity': productQuantity,
@@ -42,6 +46,7 @@ class CartItemModel {
 
   factory CartItemModel.fromMap(Map<String, dynamic> map) {
     return CartItemModel(
+      cartItemId: map['cartItemId'] as String,
       productId: map['productId'] as String,
       productTitle: map['productTitle'] as String,
       productQuantity: map['productQuantity'] as int,
@@ -58,6 +63,7 @@ class CartItemModel {
 
 extension CartItemXEntity on CartItemModel {
   CartItemEntity toEntity() => CartItemEntity(
+      cartItemId: cartItemId,
       productId: productId,
       productTitle: productTitle,
       productQuantity: productQuantity,

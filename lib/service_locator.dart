@@ -25,6 +25,8 @@ import 'package:topshop/domain/products/usecases/get_new_in.dart';
 import 'package:topshop/domain/products/usecases/get_search_product.dart';
 import 'package:topshop/domain/products/usecases/get_top_selling.dart';
 
+import 'domain/cart/usecases/remove_cart_item.dart';
+
 final sl = GetIt.instance;
 
 Future<void> initializeDependecies() async {
@@ -61,4 +63,5 @@ Future<void> initializeDependecies() async {
 
   sl.registerSingleton<AddToCartUseCase>(AddToCartUseCase());
   sl.registerSingleton<GetCartItemsUseCase>(GetCartItemsUseCase());
+  sl.registerSingleton<RemoveCartItemUseCase>(RemoveCartItemUseCase());
 }

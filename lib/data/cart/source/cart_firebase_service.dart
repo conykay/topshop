@@ -7,6 +7,7 @@ import '../models/add_to_cart_req.dart';
 abstract class CartFirebaseService {
   Future<Either> addToCart({required AddToCartReq cartItem});
   Future<Either> getCartItems();
+  Future<Either> removeCartItem({required String itemId});
 }
 
 class CartFirebaseServiceImp extends CartFirebaseService {
@@ -34,7 +35,29 @@ class CartFirebaseServiceImp extends CartFirebaseService {
           .doc(user!.uid)
           .collection('Cart')
           .get();
-      return Right(returnedData.docs.map((e) => e.data()).toList());
+      List<Map> products = [];
+      for (var item in returnedData.docs) {
+        var data = item.data();
+        data.addAll({'cartItemId': item.id});
+        products.add(data);
+      }
+      return Right(products);
+    } catch (e) {
+      return Left('Please try again');
+    }
+  }
+
+  @override
+  Future<Either> removeCartItem({required String itemId}) async {
+    try {
+      var user = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user!.uid)
+          .collection('Cart')
+          .doc(itemId)
+          .delete();
+      return Right('Cart item deleted successfully');
     } catch (e) {
       return Left('Please try again');
     }

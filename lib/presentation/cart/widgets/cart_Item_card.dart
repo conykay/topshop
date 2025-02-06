@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/common/helper/product/product_color_helper.dart';
 import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
+import 'package:topshop/presentation/cart/bloc/cart_items_state_cubit.dart';
 
 import '../../../core/configs/theme/app_colors.dart';
 
@@ -27,7 +29,10 @@ class CartItemCard extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10),
+                ),
                 image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
@@ -46,115 +51,130 @@ class CartItemCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        item.productTitle,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      Text(
-                        '\$ ${item.totalPrice}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                          color: AppColors.primary,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text.rich(
-                        TextSpan(text: 'Size: ', children: [
-                          TextSpan(
-                              text: item.productSize,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16))
-                        ]),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Row(
-                        children: [
-                          Text.rich(
-                            TextSpan(text: 'Color: ', children: [
-                              TextSpan(
-                                  text: item.productColor.title,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16))
-                            ]),
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          SizedBox(width: 5),
-                          Container(
-                            height: 22,
-                            width: 22,
-                            decoration: BoxDecoration(
-                              color: ProductColorHelper.color(
-                                hex: item.productColor.hex,
-                              ),
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(100),
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            item.productTitle,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          SizedBox(width: 5),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text.rich(
-                        TextSpan(text: 'Price: ', children: [
-                          TextSpan(
-                              text: '\$${item.productPrice}',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ))
-                        ]),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                      Text.rich(
-                        TextSpan(text: 'Ammount: ', children: [
-                          TextSpan(
-                              text: item.productQuantity.toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ))
-                        ]),
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          item.createdDate.toDate().toString(),
-                          style: TextStyle(fontSize: 10),
                         ),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.cancel_outlined,
-                            color: Colors.redAccent,
+                        Expanded(
+                          child: Text(
+                            '\$ ${item.totalPrice}',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: AppColors.primary,
+                            ),
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text.rich(
+                          TextSpan(text: 'Size: ', children: [
+                            TextSpan(
+                                text: item.productSize,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16))
+                          ]),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Row(
+                          children: [
+                            Text.rich(
+                              TextSpan(text: 'Color: ', children: [
+                                TextSpan(
+                                    text: item.productColor.title,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16))
+                              ]),
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            SizedBox(width: 5),
+                            Container(
+                              height: 22,
+                              width: 22,
+                              decoration: BoxDecoration(
+                                color: ProductColorHelper.color(
+                                  hex: item.productColor.hex,
+                                ),
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                          ],
                         )
-                      ])
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text.rich(
+                          TextSpan(text: 'Price: ', children: [
+                            TextSpan(
+                                text: '\$${item.productPrice}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ))
+                          ]),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        Text.rich(
+                          TextSpan(text: 'Ammount: ', children: [
+                            TextSpan(
+                                text: item.productQuantity.toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ))
+                          ]),
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            item.createdDate.toDate().toString(),
+                            style: TextStyle(fontSize: 10),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              context
+                                  .read<CartItemsStateCubit>()
+                                  .removeCartItem(itemId: item.cartItemId);
+                            },
+                            child: Icon(
+                              Icons.cancel_outlined,
+                              color: Colors.redAccent,
+                            ),
+                          )
+                        ]),
+                  )
                 ],
               ),
             ),

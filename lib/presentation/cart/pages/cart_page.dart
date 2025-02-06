@@ -24,12 +24,12 @@ class CartPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           child: BlocBuilder<CartItemsStateCubit, CartItemsState>(
               builder: (context, state) {
-            if (state is LoadingCartItems) {
+            if (state is CartLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
             }
-            if (state is LoadedCartItems) {
+            if (state is CartLoaded) {
               return state.items.isNotEmpty
                   ? Stack(
                       children: [

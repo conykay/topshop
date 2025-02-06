@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:topshop/domain/products/entities/product_color_entity.dart';
 
 class CartItemEntity {
+  final String cartItemId;
   final String productId;
   final String productTitle;
   final int productQuantity;
@@ -23,5 +24,6 @@ class CartItemEntity {
     required this.totalPrice,
     required this.productImage,
     required this.createdDate,
+    required this.cartItemId,
   });
 }

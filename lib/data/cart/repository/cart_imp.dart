@@ -24,4 +24,14 @@ class CartRepositoryImp extends CartRepository {
       ),
     );
   }
+
+  @override
+  Future<Either> removeCartItem({required String itemId}) async {
+    var returnedData =
+        await sl<CartFirebaseService>().removeCartItem(itemId: itemId);
+    return returnedData.fold(
+      (error) => Left(error),
+      (message) => Right(message),
+    );
+  }
 }
