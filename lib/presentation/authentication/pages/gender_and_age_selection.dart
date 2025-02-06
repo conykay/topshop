@@ -41,7 +41,7 @@ class GenderAndAgeSelectionPage extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
             }
             if (state is ButtonSuccessSate) {
-              AppNavigator.pushAndRemove(context, HomePage());
+              AppNavigator.pushAndRemove(context);
             }
           },
           child: Column(

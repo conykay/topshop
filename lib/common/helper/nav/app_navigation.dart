@@ -20,7 +20,7 @@ class AppNavigator {
     );
   }
 
-  static void pushAndRemove(BuildContext context, Widget page) {
+  static void pushAndRemove(BuildContext context) {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => HomePage()),
