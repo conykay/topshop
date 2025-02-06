@@ -16,6 +16,7 @@ import 'package:topshop/domain/auth/usecases/signin.dart';
 import 'package:topshop/domain/auth/usecases/signup.dart';
 import 'package:topshop/domain/cart/repository/cart.dart';
 import 'package:topshop/domain/cart/usecases/add_to_cart.dart';
+import 'package:topshop/domain/cart/usecases/checkout.dart';
 import 'package:topshop/domain/cart/usecases/get_cart_items.dart';
 import 'package:topshop/domain/category/repository/categories.dart';
 import 'package:topshop/domain/category/usecases/get_categories.dart';
@@ -64,4 +65,5 @@ Future<void> initializeDependecies() async {
   sl.registerSingleton<AddToCartUseCase>(AddToCartUseCase());
   sl.registerSingleton<GetCartItemsUseCase>(GetCartItemsUseCase());
   sl.registerSingleton<RemoveCartItemUseCase>(RemoveCartItemUseCase());
+  sl.registerSingleton<CheckoutUseCase>(CheckoutUseCase());
 }

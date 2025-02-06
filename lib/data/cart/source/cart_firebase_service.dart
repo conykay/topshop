@@ -3,11 +3,13 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/add_to_cart_req.dart';
+import '../models/checkout_req.dart';
 
 abstract class CartFirebaseService {
   Future<Either> addToCart({required AddToCartReq cartItem});
   Future<Either> getCartItems();
   Future<Either> removeCartItem({required String itemId});
+  Future<Either> checkOutRequest({required CheckoutReq order});
 }
 
 class CartFirebaseServiceImp extends CartFirebaseService {
@@ -58,6 +60,30 @@ class CartFirebaseServiceImp extends CartFirebaseService {
           .doc(itemId)
           .delete();
       return Right('Cart item deleted successfully');
+    } catch (e) {
+      return Left('Please try again');
+    }
+  }
+
+  @override
+  Future<Either> checkOutRequest({required CheckoutReq order}) async {
+    try {
+      var user = FirebaseAuth.instance.currentUser;
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user!.uid)
+          .collection('Orders')
+          .add(order.toMap());
+      //clear cart
+      for (var item in order.items) {
+        await FirebaseFirestore.instance
+            .collection('Users')
+            .doc(user.uid)
+            .collection('Cart')
+            .doc(item.cartItemId)
+            .delete();
+      }
+      return Right('Order registered');
     } catch (e) {
       return Left('Please try again');
     }

@@ -74,3 +74,17 @@ extension CartItemXEntity on CartItemModel {
       productImage: productImage,
       createdDate: createdDate);
 }
+
+extension CartItemXModel on CartItemEntity {
+  CartItemModel toModel() => CartItemModel(
+      cartItemId: cartItemId,
+      productId: productId,
+      productTitle: productTitle,
+      productQuantity: productQuantity,
+      productColor: productColor.toModel(),
+      productSize: productSize,
+      productPrice: productPrice,
+      totalPrice: totalPrice,
+      productImage: productImage,
+      createdDate: createdDate);
+}

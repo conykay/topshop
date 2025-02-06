@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:topshop/common/helper/cart/cart_helper.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
+import 'package:topshop/presentation/cart/pages/check_out_page.dart';
 
 import '../../../domain/cart/entities/cart_item_entity.dart';
 
@@ -92,7 +94,11 @@ class CheckOut extends StatelessWidget {
             ],
           ),
           SizedBox(height: 24),
-          BasicButton(onPressed: () {}, title: 'Chekout')
+          BasicButton(
+              onPressed: () {
+                AppNavigator.push(context, CheckOutPage(items: items));
+              },
+              title: 'Chekout')
         ],
       ),
     );
