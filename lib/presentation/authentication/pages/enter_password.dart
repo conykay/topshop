@@ -36,7 +36,7 @@ class EnterPasswordPage extends StatelessWidget {
             }
 
             if (state is ButtonSuccessSate) {
-              AppNavigator.pushAndRemove(context, HomePage());
+              AppNavigator.pushAndRemove(context);
             }
           },
           child: Padding(

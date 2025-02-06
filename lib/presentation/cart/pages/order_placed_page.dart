@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/presentation/home/pages/home.dart';
 
 class OrderPlacedPage extends StatelessWidget {
   const OrderPlacedPage({super.key});
@@ -58,7 +56,7 @@ class OrderPlacedPage extends StatelessWidget {
                     SizedBox(height: 20),
                     BasicButton(
                         onPressed: () {
-                          AppNavigator.pushAndRemove(context, HomePage());
+                          AppNavigator.pushAndRemove(context);
                         },
                         title: 'Finish'),
                   ],
