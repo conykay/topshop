@@ -7,6 +7,7 @@ import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/helper/product/product_price_helper.dart';
 import 'package:topshop/common/widgets/button/basic_reactive_button.dart';
 import 'package:topshop/data/cart/models/add_to_cart_req.dart';
+import 'package:topshop/data/products/models/product_color_model.dart';
 import 'package:topshop/domain/cart/usecases/add_to_cart.dart';
 import 'package:topshop/domain/products/entities/product_color_entity.dart';
 import 'package:topshop/domain/products/entities/product_entity.dart';

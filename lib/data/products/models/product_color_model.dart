@@ -39,4 +39,6 @@ extension ProductColorXEntity on ProductColorModel {
       );
 }
 
-
+extension ProductColorXModel on ProductColorEntity {
+  ProductColorModel toModel() => ProductColorModel(title: title, hex: hex);
+}
