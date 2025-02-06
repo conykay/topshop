@@ -11,15 +11,15 @@ TopShop is a modern e-commerce mobile application designed to provide a seamless
 - **Payment Integration**: Secure payment gateway integration.
 - **Admin Dashboard**: Manage products, orders, and users.
 
-    ## Technologies Used
+## Technologies Used
 
-    - **Frontend**: Flutter, Dart
-    - **Backend**: Node.js, Express
-    - **Database**: Firestore
-    - **Authentication**: Firebase Authentication
-    - **Payment Gateway**: Stripe
+- **Frontend**: Flutter, Dart
+- **Backend**: Node.js, Express
+- **Database**: Firestore
+- **Authentication**: Firebase Authentication
+- **Payment Gateway**: Stripe
     ```
-    
+
 ## Installation
 
 1. Clone the repository:
@@ -62,7 +62,7 @@ TopShop is a modern e-commerce mobile application designed to provide a seamless
     ## Technologies Used
 
     - **Frontend**: Flutter, Dart
-    - **Backend**: Node.js, Express
+    - **Backend**: Firestore Firebase
     - **Database**: Firestore
     - **Authentication**: Firebase Authentication
     - **Payment Gateway**: Stripe
@@ -78,4 +78,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-For any inquiries, please contact [your email address].
+For any inquiries, please contact [ceekayconelius@gmail.com]. @conykay
