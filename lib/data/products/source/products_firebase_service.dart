@@ -11,6 +11,7 @@ abstract class ProductsFirebaseService {
   Future<Either> getSearchedProduct({required String title});
   Future<bool> addRemoveFavorites({required ProductModel product});
   Future<bool> isInFavorite({required String productId});
+  Future<Either> getFavorites();
 }
 
 class ProductsFirebaseServiceImp extends ProductsFirebaseService {
@@ -113,6 +114,22 @@ class ProductsFirebaseServiceImp extends ProductsFirebaseService {
       return isInFavorites.docs.isNotEmpty;
     } catch (e) {
       return false;
+    }
+  }
+
+  @override
+  Future<Either> getFavorites() async {
+    try {
+      var user = FirebaseAuth.instance.currentUser;
+      var returnedData = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user!.uid)
+          .collection('Favorites')
+          .orderBy('createdDate')
+          .get();
+      return Right(returnedData.docs.map((e) => e.data()).toList());
+    } catch (e) {
+      return Left('Please try again');
     }
   }
 }

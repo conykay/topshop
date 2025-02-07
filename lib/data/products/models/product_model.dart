@@ -36,7 +36,7 @@ class ProductModel {
     return <String, dynamic>{
       'categoryId': categoryId,
       'colors': colors.map((x) => x.toMap()).toList(),
-      'createdDate': createdDate.toString(),
+      'createdDate': createdDate,
       'discountedPrice': discountedPrice,
       'gender': gender,
       'images': images,

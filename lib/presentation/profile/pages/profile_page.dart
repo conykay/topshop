@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/domain/auth/entities/user.dart';
+import 'package:topshop/presentation/profile/pages/favorites_page.dart';
 
 import '../../../core/configs/assets/app_images.dart';
 
@@ -12,7 +14,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppBar(),
+      appBar: BasicAppBar(title: Text('Profile')),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Column(
@@ -67,7 +69,9 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(height: 25),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                AppNavigator.push(context, FavoritesPage());
+              },
               child: Container(
                 width: double.infinity,
                 height: 70,

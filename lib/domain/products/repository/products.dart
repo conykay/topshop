@@ -9,4 +9,5 @@ abstract class ProductsRepository {
   Future<Either> getSearchedProduct({required String title});
   Future<bool> addRemoveFavorites({required ProductModel product});
   Future<bool> isInFavorite({required String productId});
+  Future<Either> getFavorites();
 }

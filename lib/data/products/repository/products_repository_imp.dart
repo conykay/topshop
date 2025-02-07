@@ -77,4 +77,19 @@ class ProductsRepositoryImp extends ProductsRepository {
   Future<bool> isInFavorite({required String productId}) {
     return sl<ProductsFirebaseService>().isInFavorite(productId: productId);
   }
+
+  @override
+  Future<Either> getFavorites() async {
+    var favoritesList = await sl<ProductsFirebaseService>().getFavorites();
+    return favoritesList.fold(
+      (error) => Left(error),
+      (data) => Right(
+        List.from(data)
+            .map(
+              (e) => ProductModel.fromMap(e).toEntity(),
+            )
+            .toList(),
+      ),
+    );
+  }
 }
