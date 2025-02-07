@@ -7,6 +7,7 @@ import 'package:topshop/domain/auth/entities/user.dart';
 import 'package:topshop/presentation/cart/pages/cart_page.dart';
 import 'package:topshop/presentation/home/bloc/user_info_cubit.dart';
 import 'package:topshop/presentation/home/bloc/user_info_state.dart';
+import 'package:topshop/presentation/profile/pages/profile_page.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -28,9 +29,9 @@ class Header extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _profileImage(state.user),
-                _gender(state.user),
-                _cart(context),
+                _ProfileImage(user: state.user),
+                _UserGender(user: state.user),
+                _CartButton(context: context),
               ],
             );
           }
@@ -39,28 +40,43 @@ class Header extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _profileImage(UserEntity user) {
-    return Container(
-      height: 40,
-      width: 40,
-      decoration: BoxDecoration(
-        color: Colors.redAccent,
-        shape: BoxShape.circle,
-        image: DecorationImage(
-          image: user.image.isEmpty
-              ? AssetImage(
-                  user.gender != 1
-                      ? AppImages.defaultProfileFemale
-                      : AppImages.defaultProfileMale,
-                )
-              : NetworkImage(user.image),
+class _CartButton extends StatelessWidget {
+  const _CartButton({
+    required this.context,
+  });
+
+  final BuildContext context;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        AppNavigator.push(context, CartPage());
+      },
+      child: Container(
+        height: 40,
+        width: 40,
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          shape: BoxShape.circle,
         ),
+        child: Icon(Icons.shopping_cart),
       ),
     );
   }
+}
 
-  Widget _gender(UserEntity user) {
+class _UserGender extends StatelessWidget {
+  const _UserGender({
+    required this.user,
+  });
+
+  final UserEntity user;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       height: 40,
       padding: EdgeInsets.symmetric(horizontal: 16),
@@ -75,20 +91,37 @@ class Header extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _cart(BuildContext context) {
+class _ProfileImage extends StatelessWidget {
+  const _ProfileImage({
+    required this.user,
+  });
+
+  final UserEntity user;
+
+  @override
+  Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        AppNavigator.push(context, CartPage());
+        AppNavigator.push(context, ProfilePage(user: user));
       },
       child: Container(
         height: 40,
         width: 40,
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          color: Colors.redAccent,
           shape: BoxShape.circle,
+          image: DecorationImage(
+            image: user.image.isEmpty
+                ? AssetImage(
+                    user.gender != 1
+                        ? AppImages.defaultProfileFemale
+                        : AppImages.defaultProfileMale,
+                  )
+                : NetworkImage(user.image),
+          ),
         ),
-        child: Icon(Icons.shopping_cart),
       ),
     );
   }
