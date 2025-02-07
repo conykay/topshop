@@ -12,7 +12,6 @@ import 'package:topshop/data/cart/models/checkout_req.dart';
 import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
 import 'package:topshop/domain/cart/usecases/checkout.dart';
 import 'package:topshop/presentation/cart/pages/order_placed_page.dart';
-import 'package:topshop/presentation/home/pages/home.dart';
 import 'package:topshop/service_locator.dart';
 
 class CheckOutPage extends StatelessWidget {

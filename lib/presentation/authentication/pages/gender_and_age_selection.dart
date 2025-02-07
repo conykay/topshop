@@ -10,7 +10,6 @@ import 'package:topshop/data/auth/models/user_creation_req.dart';
 import 'package:topshop/domain/auth/usecases/signup.dart';
 import 'package:topshop/presentation/authentication/bloc/age_display_cubit.dart';
 import 'package:topshop/presentation/authentication/bloc/age_selection_cubit.dart';
-import 'package:topshop/presentation/home/pages/home.dart';
 
 import '../../../common/widgets/bottomsheet/ages_bottomsheet.dart';
 import '../bloc/gender_selection_cubit.dart';
