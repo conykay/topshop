@@ -91,3 +91,18 @@ extension ProductModelXEntity on ProductModel {
       salesNumber: salesNumber,
       title: title);
 }
+
+extension ProductModelXModel on ProductEntity {
+  ProductModel toModel() => ProductModel(
+      categoryId: categoryId,
+      colors: colors.map((e) => e.toModel()).toList(),
+      createdDate: createdDate,
+      discountedPrice: discountedPrice,
+      gender: gender,
+      images: images,
+      price: price,
+      sizes: sizes,
+      productId: productId,
+      salesNumber: salesNumber,
+      title: title);
+}

@@ -67,4 +67,14 @@ class ProductsRepositoryImp extends ProductsRepository {
       ),
     );
   }
+
+  @override
+  Future<bool> addRemoveFavorites({required ProductModel product}) {
+    return sl<ProductsFirebaseService>().addRemoveFavorites(product: product);
+  }
+
+  @override
+  Future<bool> isInFavorite({required String productId}) {
+    return sl<ProductsFirebaseService>().isInFavorite(productId: productId);
+  }
 }
