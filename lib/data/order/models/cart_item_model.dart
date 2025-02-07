@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
+import 'package:topshop/domain/order/entities/cart_item_entity.dart';
 
 import '../../products/models/product_color_model.dart';
 

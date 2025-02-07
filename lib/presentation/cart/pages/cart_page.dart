@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
-import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
+import 'package:topshop/domain/order/entities/cart_item_entity.dart';
 import 'package:topshop/presentation/all_categories/pages/categories_display_page.dart';
 import 'package:topshop/presentation/cart/bloc/cart_items_state.dart';
 import 'package:topshop/presentation/cart/bloc/cart_items_state_cubit.dart';

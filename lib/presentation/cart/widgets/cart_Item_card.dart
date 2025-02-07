@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/common/helper/product/product_color_helper.dart';
-import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
+import 'package:topshop/domain/order/entities/cart_item_entity.dart';
 import 'package:topshop/presentation/cart/bloc/cart_items_state_cubit.dart';
 
 import '../../../core/configs/theme/app_colors.dart';

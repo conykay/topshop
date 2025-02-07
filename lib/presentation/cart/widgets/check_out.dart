@@ -4,7 +4,7 @@ import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/button/basic_app_button.dart';
 import 'package:topshop/presentation/cart/pages/check_out_page.dart';
 
-import '../../../domain/cart/entities/cart_item_entity.dart';
+import '../../../domain/order/entities/cart_item_entity.dart';
 
 class CheckOut extends StatelessWidget {
   final List<CartItemEntity> items;

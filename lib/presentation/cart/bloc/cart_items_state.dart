@@ -1,4 +1,4 @@
-import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
+import 'package:topshop/domain/order/entities/cart_item_entity.dart';
 
 abstract class CartItemsState {}
 

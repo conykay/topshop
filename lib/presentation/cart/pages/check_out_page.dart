@@ -8,9 +8,9 @@ import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/common/widgets/button/basic_reactive_button.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/data/cart/models/checkout_req.dart';
-import 'package:topshop/domain/cart/entities/cart_item_entity.dart';
-import 'package:topshop/domain/cart/usecases/checkout.dart';
+import 'package:topshop/data/order/models/checkout_req.dart';
+import 'package:topshop/domain/order/entities/cart_item_entity.dart';
+import 'package:topshop/domain/order/usecases/checkout.dart';
 import 'package:topshop/presentation/cart/pages/order_placed_page.dart';
 import 'package:topshop/service_locator.dart';
 

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../data/cart/models/add_to_cart_req.dart';
-import '../../../data/cart/models/checkout_req.dart';
+import '../../../data/order/models/add_to_cart_req.dart';
+import '../../../data/order/models/checkout_req.dart';
 
-abstract class CartRepository {
+abstract class OrderRepository {
   Future<Either> addToCart({required AddToCartReq cartItem});
   Future<Either> getCartItems();
   Future<Either> removeCartItem({required String itemId});

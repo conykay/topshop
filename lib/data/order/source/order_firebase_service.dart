@@ -5,14 +5,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/add_to_cart_req.dart';
 import '../models/checkout_req.dart';
 
-abstract class CartFirebaseService {
+abstract class OrderFirebaseService {
   Future<Either> addToCart({required AddToCartReq cartItem});
   Future<Either> getCartItems();
   Future<Either> removeCartItem({required String itemId});
   Future<Either> checkOutRequest({required CheckoutReq order});
 }
 
-class CartFirebaseServiceImp extends CartFirebaseService {
+class OrderFirebaseServiceImp extends OrderFirebaseService {
   @override
   Future<Either> addToCart({required AddToCartReq cartItem}) async {
     try {
