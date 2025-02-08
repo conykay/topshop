@@ -20,6 +20,7 @@ import 'package:topshop/domain/order/usecases/checkout.dart';
 import 'package:topshop/domain/order/usecases/get_cart_items.dart';
 import 'package:topshop/domain/category/repository/categories.dart';
 import 'package:topshop/domain/category/usecases/get_categories.dart';
+import 'package:topshop/domain/order/usecases/get_orders_usecase.dart';
 import 'package:topshop/domain/products/repository/products.dart';
 import 'package:topshop/domain/products/usecases/add_remove_favorite.dart';
 import 'package:topshop/domain/products/usecases/get_by_category.dart';
@@ -72,4 +73,5 @@ Future<void> initializeDependecies() async {
   sl.registerSingleton<AddRemoveFavoriteUseCase>(AddRemoveFavoriteUseCase());
   sl.registerSingleton<IsInFavoritesUseCase>(IsInFavoritesUseCase());
   sl.registerSingleton<GetFavoritesUseCase>(GetFavoritesUseCase());
+  sl.registerSingleton<GetOrdersUsecase>(GetOrdersUsecase());
 }

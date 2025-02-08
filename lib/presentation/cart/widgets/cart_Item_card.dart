@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
@@ -26,18 +27,26 @@ class CartItemCard extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                ),
-                image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                      ImageDisplayHelper.displayProductImage(item.productImage),
-                    )),
+            child: CachedNetworkImage(
+              imageUrl:
+                  ImageDisplayHelper.displayProductImage(item.productImage),
+              imageBuilder: (context, provider) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                    ),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: provider,
+                    ),
+                  ),
+                );
+              },
+              progressIndicatorBuilder: (context, url, progress) => Center(
+                child: CircularProgressIndicator(value: progress.progress),
               ),
             ),
           ),

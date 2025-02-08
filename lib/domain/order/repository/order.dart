@@ -8,4 +8,5 @@ abstract class OrderRepository {
   Future<Either> getCartItems();
   Future<Either> removeCartItem({required String itemId});
   Future<Either> checkOutRequest({required CheckoutReq order});
+  Future<Either> getOrders();
 }

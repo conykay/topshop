@@ -10,6 +10,7 @@ abstract class OrderFirebaseService {
   Future<Either> getCartItems();
   Future<Either> removeCartItem({required String itemId});
   Future<Either> checkOutRequest({required CheckoutReq order});
+  Future<Either> getOrders();
 }
 
 class OrderFirebaseServiceImp extends OrderFirebaseService {
@@ -86,6 +87,22 @@ class OrderFirebaseServiceImp extends OrderFirebaseService {
       return Right('Order registered');
     } catch (e) {
       return Left('Please try again');
+    }
+  }
+
+  @override
+  Future<Either> getOrders() async {
+    try {
+      var user = FirebaseAuth.instance.currentUser;
+      var returnedData = await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(user!.uid)
+          .collection('Orders')
+          .orderBy('createdDate')
+          .get();
+      return Right(returnedData.docs.map((e) => e.data()).toList());
+    } catch (e) {
+      return Left('Failed to retrieve items');
     }
   }
 }

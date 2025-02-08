@@ -6,10 +6,8 @@ import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/domain/products/usecases/get_favorites.dart';
 import 'package:topshop/service_locator.dart';
 
-import '../../../common/helper/nav/app_navigation.dart';
-import '../../../common/widgets/button/basic_app_button.dart';
-import '../../all_categories/pages/categories_display_page.dart';
 import '../widgets/favorites_grid_widget.dart';
+import '../widgets/no_items_widget.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -31,7 +29,10 @@ class FavoritesPage extends StatelessWidget {
                   ? FavoritesProductsGrid(
                       products: state.products,
                     )
-                  : _NoItems();
+                  : NoItemsWidget(
+                      message: 'You dont seem to like anything :(',
+                      icon: Icons.star_half_rounded,
+                    );
             }
             if (state is LoadingProducts) {
               return Center(
@@ -41,41 +42,6 @@ class FavoritesPage extends StatelessWidget {
             return Container();
           }),
         ),
-      ),
-    );
-  }
-}
-
-class _NoItems extends StatelessWidget {
-  const _NoItems();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            Icons.star_half_rounded,
-            size: 150,
-            color: Colors.yellowAccent,
-          ),
-          SizedBox(height: 20),
-          Text(
-            'You dont seem to like anything :(',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 30),
-          ),
-          SizedBox(height: 20),
-          SizedBox(
-            width: 180,
-            child: BasicButton(
-                onPressed: () {
-                  AppNavigator.pushReplacement(context, AllCategoriesPage());
-                },
-                title: 'Explore Categories'),
-          )
-        ],
       ),
     );
   }

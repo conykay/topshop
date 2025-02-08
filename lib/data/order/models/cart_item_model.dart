@@ -40,7 +40,7 @@ class CartItemModel {
       'productPrice': productPrice,
       'totalPrice': totalPrice,
       'productImage': productImage,
-      'createdDate': createdDate.toString(),
+      'createdDate': createdDate,
     };
   }
 

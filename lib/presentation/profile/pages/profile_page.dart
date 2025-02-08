@@ -4,6 +4,7 @@ import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/domain/auth/entities/user.dart';
 import 'package:topshop/presentation/profile/pages/favorites_page.dart';
+import 'package:topshop/presentation/profile/pages/orders_page.dart';
 
 import '../../../core/configs/assets/app_images.dart';
 
@@ -94,7 +95,9 @@ class ProfilePage extends StatelessWidget {
             ),
             SizedBox(height: 15),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                AppNavigator.push(context, OrdersPage());
+              },
               child: Container(
                 width: double.infinity,
                 height: 70,

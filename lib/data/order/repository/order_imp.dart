@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:topshop/data/order/models/add_to_cart_req.dart';
 import 'package:topshop/data/order/models/cart_item_model.dart';
 import 'package:topshop/data/order/models/checkout_req.dart';
+import 'package:topshop/data/order/models/order_item_model.dart';
 import 'package:topshop/data/order/source/order_firebase_service.dart';
 import 'package:topshop/domain/order/repository/order.dart';
 
@@ -43,6 +44,21 @@ class OrderRepositoryImp extends OrderRepository {
     return returnedData.fold(
       (error) => Left(error),
       (message) => Right(message),
+    );
+  }
+
+  @override
+  Future<Either> getOrders() async {
+    var returnedData = await sl<OrderFirebaseService>().getOrders();
+    return returnedData.fold(
+      (error) => Left(error),
+      (data) => Right(
+        List.from(data)
+            .map(
+              (e) => OrderItemModel.fromMap(e).toEntity(),
+            )
+            .toList(),
+      ),
     );
   }
 }
