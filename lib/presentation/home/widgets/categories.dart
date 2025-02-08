@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/bloc/categories/categories_display_cubit.dart';
@@ -53,21 +54,24 @@ class _CategoriesDisplayList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              Container(
-                height: 60,
-                width: 60,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      ImageDisplayHelper.displayCategoryImage(
-                        categories[index].image,
+              CachedNetworkImage(
+                imageUrl: ImageDisplayHelper.displayCategoryImage(
+                    categories[index].image),
+                imageBuilder: (context, provider) => Container(
+                    height: 60,
+                    width: 60,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: provider,
+                        fit: BoxFit.fill,
                       ),
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    )),
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                    child: CircularProgressIndicator(
+                  value: progress.progress,
+                )),
               ),
               SizedBox(height: 10),
               Text(

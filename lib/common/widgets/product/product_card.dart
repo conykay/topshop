@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/common/helper/nav/app_navigation.dart';
@@ -27,15 +28,15 @@ class ProductCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-                flex: 4,
-                child: Container(
+              flex: 4,
+              child: CachedNetworkImage(
+                imageUrl:
+                    ImageDisplayHelper.displayProductImage(product.images[0]),
+                imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                      image: NetworkImage(
-                        ImageDisplayHelper.displayProductImage(
-                            product.images[0]),
-                      ),
+                      image: imageProvider,
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
@@ -43,7 +44,16 @@ class ProductCard extends StatelessWidget {
                       topRight: Radius.circular(10),
                     ),
                   ),
-                )),
+                ),
+                progressIndicatorBuilder: (context, url, progress) => Center(
+                  child: CircularProgressIndicator(
+                    value: progress.progress,
+                  ),
+                ),
+                errorWidget: (context, url, error) =>
+                    Icon(Icons.image_not_supported),
+              ),
+            ),
             Expanded(
               flex: 1,
               child: Padding(

@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:topshop/common/bloc/categories/categories_display_cubit.dart';
 import 'package:topshop/common/bloc/categories/categories_display_state.dart';
+import 'package:topshop/common/helper/images/image_display.dart';
 import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
-import 'package:topshop/core/constants/app_urls.dart';
 import 'package:topshop/presentation/category_products/pages/category_products.dart';
 
 class AllCategoriesPage extends StatelessWidget {
@@ -62,21 +63,27 @@ class _CategoriesListDisplay extends StatelessWidget {
                 color: AppColors.secondBackground,
                 child: Row(
                   children: [
-                    Container(
-                      height: 80,
-                      width: 80,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                        ),
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            AppUrl.categoryImage +
-                                categories[index].image +
-                                AppUrl.alt,
+                    CachedNetworkImage(
+                      imageUrl: ImageDisplayHelper.displayCategoryImage(
+                          categories[index].image),
+                      imageBuilder: (context, provider) => Container(
+                        height: 80,
+                        width: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
                           ),
+                          image: DecorationImage(
+                            image: provider,
+                          ),
+                        ),
+                      ),
+                      progressIndicatorBuilder: (context, url, progress) =>
+                          Center(
+                        child: CircularProgressIndicator(
+                          value: progress.progress,
                         ),
                       ),
                     ),
