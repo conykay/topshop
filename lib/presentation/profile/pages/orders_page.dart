@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:topshop/common/helper/nav/app_navigation.dart';
 import 'package:topshop/common/widgets/appbar/app_bar.dart';
 import 'package:topshop/core/configs/theme/app_colors.dart';
 import 'package:topshop/domain/order/entities/order_item_entity.dart';
 import 'package:topshop/presentation/profile/bloc/orders_cubit.dart';
 import 'package:topshop/presentation/profile/bloc/orders_state.dart';
+import 'package:topshop/presentation/profile/pages/order_details_page.dart';
 
 import '../widgets/no_items_widget.dart';
 
@@ -54,10 +56,12 @@ class OrderListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: ListView.separated(
-        itemBuilder: (context, index) => Container(
+    return ListView.separated(
+      itemBuilder: (context, index) => GestureDetector(
+        onTap: () {
+          AppNavigator.push(context, OrderDetailsPage(order: orders[index]));
+        },
+        child: Container(
           width: double.infinity,
           padding: EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -92,9 +96,9 @@ class OrderListItem extends StatelessWidget {
             ],
           ),
         ),
-        separatorBuilder: (context, index) => SizedBox(height: 15),
-        itemCount: orders.length,
       ),
+      separatorBuilder: (context, index) => SizedBox(height: 15),
+      itemCount: orders.length,
     );
   }
 }
