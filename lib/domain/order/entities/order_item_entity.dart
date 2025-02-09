@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:topshop/domain/order/entities/cart_item_entity.dart';
+import 'package:topshop/domain/order/entities/order_progress_entity.dart';
 
 class OrderItemEntity {
   final List<CartItemEntity> items;
@@ -10,11 +11,13 @@ class OrderItemEntity {
   final String shippingAdress;
   final int itemCount;
   final double totalPrice;
+  final List<OrderProgressEntity> progress;
   OrderItemEntity({
     required this.items,
     required this.createdDate,
     required this.shippingAdress,
     required this.itemCount,
     required this.totalPrice,
+    required this.progress,
   });
 }

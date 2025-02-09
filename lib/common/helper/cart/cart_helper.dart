@@ -27,4 +27,15 @@ class CartHelper {
             tax(items: items))
         .toStringAsFixed(2));
   }
+
+  static List<Map<String, dynamic>> get initialProgress {
+    var intitalData = [
+      {'title': 'Order Placed', 'done': true},
+      {'title': 'Order Confirmed', 'done': false},
+      {'title': 'Order Processed', 'done': false},
+      {'title': 'Order Shipped', 'done': false},
+      {'title': 'Order Delivered', 'done': false},
+    ];
+    return intitalData;
+  }
 }
